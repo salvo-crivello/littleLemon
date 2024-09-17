@@ -6,6 +6,7 @@ function App() {
       <h1>Little Lemon project</h1>
       <p>prova finale</p>
       <p>Crivello Salvatore</p>
+      <p>Developer and Designer</p>
     </div>
   );
 }
