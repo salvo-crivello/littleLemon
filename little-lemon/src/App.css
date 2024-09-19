@@ -204,7 +204,6 @@ footer > div > div {
   flex-direction: column;
   gap: 24px;
   width: 20%;
-  border: 1px solid red;
 }
 
 footer ul {
