@@ -58,7 +58,7 @@ export default function ReservationForms() {
   return (
     <div className="section">
       <div className="section-body-col">
-        <form className="form" onSubmit={handleSubmit}>
+        <form id="details-form" className="form" onSubmit={handleSubmit}>
           <SetDate
             title="1. SELECT DATE"
             description="Select an available date for your reservation."
