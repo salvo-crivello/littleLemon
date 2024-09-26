@@ -1,5 +1,4 @@
 import Button from "./Button";
-import IconDelivery from "../icon/IconDelivery";
 
 export default function Card(props) {
   return (
@@ -13,14 +12,7 @@ export default function Card(props) {
         <div>
           <p className="txt-paragraph">{props.description}</p>
         </div>
-        <div>
-          <Button
-            btn="tertiary"
-            text="Order a delivery"
-            className="txt-paragraph"
-          />
-          <IconDelivery />
-        </div>
+        <Button btn="tertiary" text="Order now" className="txt-paragraph" />
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import IconQuote from "../icon/IconQuote";
 
 export default function Quote(props) {
   return (
-    <div className="quote">
+    <li ref={props.reff} className="quote" style={props.animation}>
       <div>
         <div>
           <img src={props.img} alt="quote" />
@@ -18,6 +18,6 @@ export default function Quote(props) {
       <div>
         <p className="txt-paragraph">{props.quote}</p>
       </div>
-    </div>
+    </li>
   );
 }

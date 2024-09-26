@@ -15,7 +15,7 @@ export default function Hero() {
           </p>
           <Button text="Reserve a Table" />
         </div>
-        <div className="section-content">
+        <div className="section-free">
           <img
             className="hero-img"
             src="photo/photo-06.png"

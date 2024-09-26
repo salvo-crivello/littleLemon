@@ -1,23 +1,26 @@
-import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Homepage from "./Homepage";
+import Aboutpage from "./Aboutpage";
+import Reservationpage from "./Reservationpage";
 import Header from "./sections/Header";
-import Hero from "./sections/Hero";
-import Specials from "./sections/Specials";
-import Testimonials from "./sections/Testimonials";
-import About from "./sections/About";
 import Footer from "./sections/Footer";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <main>
-        <Hero />
-        <Specials />
-        <Testimonials />
-        <About />
-      </main>
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/about" element={<Aboutpage />} />
+            <Route path="/reservation" element={<Reservationpage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 

@@ -1,4 +1,3 @@
-import Quote from "../components/Quote";
 import QuoteCarousel from "../components/QuoteCarousel";
 
 export default function Testimonials() {
