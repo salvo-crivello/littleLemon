@@ -12,7 +12,12 @@ export default function Card(props) {
         <div>
           <p className="txt-paragraph">{props.description}</p>
         </div>
-        <Button btn="tertiary" text="Order now" className="txt-paragraph" />
+        <Button
+          aria-label="order now"
+          btn="tertiary"
+          text="Order now"
+          className="txt-paragraph"
+        />
       </div>
     </div>
   );

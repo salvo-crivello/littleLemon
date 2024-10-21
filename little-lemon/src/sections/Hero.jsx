@@ -1,4 +1,4 @@
-import Button from "../components/Button";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -13,7 +13,13 @@ export default function Hero() {
             Lorem ipsum dolor sit amet consectetur. Euismod orci sed nibh
             venenatis cras in posuere amet. Faucibus ridiculus aliquam.
           </p>
-          <Button text="Reserve a Table" />
+          <Link
+            to="/reservation"
+            aria-label="navigate to reservation"
+            className="link-button button-primary txt-lead-b"
+          >
+            Reserve a Table
+          </Link>
         </div>
         <div className="section-free">
           <img

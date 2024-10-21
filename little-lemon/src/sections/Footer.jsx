@@ -27,17 +27,32 @@ export default function Footer() {
           <div className="contacts">
             <h4>Contacts</h4>
             <ul>
-              <li>Address</li>
-              <li>Phone</li>
-              <li>Email</li>
+              <li>Chicago, 4th avenue str.</li>
+              <li>+555 41 32 167</li>
+              <li>littlelemon@pec.com</li>
             </ul>
           </div>
           <div className="socials">
             <h4>Socials</h4>
             <ul>
-              <li>Facebook</li>
-              <li>Instagram</li>
-              <li>TikTok</li>
+              <li>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid*/}
+                <a aria-label="littlelemon facebook" href="#">
+                  Facebook
+                </a>
+              </li>
+              <li>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid*/}
+                <a a aria-label="littlelemon instagram" href="#">
+                  Instagram
+                </a>
+              </li>
+              <li>
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid*/}
+                <a aria-label="littlelemon tiktok" href="#">
+                  TikTok
+                </a>
+              </li>
             </ul>
           </div>
         </div>

@@ -5,10 +5,13 @@ import Reservationpage from "./Reservationpage";
 import Header from "./sections/Header";
 import Footer from "./sections/Footer";
 import "./App.css";
+import ScrollReset from "./components/ScrollReset";
+import React from "react";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollReset />
       <div className="App">
         <Header />
         <main>

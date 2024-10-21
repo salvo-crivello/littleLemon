@@ -12,9 +12,7 @@ export default function Header() {
 
   useEffect(() => {
     const handlesHeaderShow = () => {
-      if (menuSlide) {
-        return;
-      }
+      if (menuSlide) return;
 
       setYCurrent(window.scrollY);
       const scrollQty = Math.abs(yCurrent - yOld);
@@ -30,6 +28,7 @@ export default function Header() {
       }
 
       setYOld(scrollQty > 50 ? yCurrent : yOld);
+
       setHeaderShow(headerVisible);
     };
 
@@ -38,10 +37,15 @@ export default function Header() {
     return () => {
       window.removeEventListener("scroll", handlesHeaderShow);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [yCurrent]);
 
   const showMenu = () => {
     setMenuSlide(!menuSlide);
+  };
+
+  const handleClick = () => {
+    setMenuSlide(menuSlide ? !menuSlide : menuSlide);
   };
 
   const urlActive = (path) => location.pathname === path;
@@ -64,8 +68,9 @@ export default function Header() {
             <li>
               <Link
                 to="/"
+                aria-label="navigate to home"
                 className={urlActive("/") ? "page-selected" : "page-unselected"}
-                onClick={showMenu}
+                onClick={handleClick}
               >
                 Home
               </Link>
@@ -73,10 +78,11 @@ export default function Header() {
             <li>
               <Link
                 to="/about"
+                aria-label="navigate to about"
                 className={
                   urlActive("/about") ? "page-selected" : "page-unselected"
                 }
-                onClick={showMenu}
+                onClick={handleClick}
               >
                 About
               </Link>
@@ -84,21 +90,40 @@ export default function Header() {
             <li>
               <Link
                 to="/reservation"
+                aria-label="navigate to reservation"
                 className={
                   urlActive("/reservation")
                     ? "page-selected"
                     : "page-unselected"
                 }
-                onClick={showMenu}
+                onClick={handleClick}
               >
                 Reservation
               </Link>
             </li>
             <li>
-              <a href="/onlinemenu">Order Online</a>
+              <Link
+                to="/onlineMenu"
+                aria-label="navigate to menu"
+                className={
+                  urlActive("/onlineMenu") ? "page-selected" : "page-unselected"
+                }
+                onClick={handleClick}
+              >
+                Order Online
+              </Link>
             </li>
             <li>
-              <a href="/Login">Login</a>
+              <Link
+                to="/login"
+                aria-label="navigate to login"
+                className={
+                  urlActive("/login") ? "page-selected" : "page-unselected"
+                }
+                onClick={handleClick}
+              >
+                Login
+              </Link>
             </li>
           </ul>
         </nav>
