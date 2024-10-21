@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export default function Calendar(props) {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth());
   const day = new Date().getDate();
   const [daysArray, setDaysArray] = useState([]);
+  const [closing, setClosing] = useState(false);
+  const calendarRef = useRef(null);
 
-  const { selectDate, finalDate } = props;
+  const { selectDate, finalDate, setCalendarVisible, setValue } = props;
+
+  /////////useEffects////////////////
 
   useEffect(() => {
     const numberOfDays = new Date(year, month + 1, 0).getDate();
@@ -20,11 +24,25 @@ export default function Calendar(props) {
     );
 
     const prevDaysArray = Array.from({
-      length: firstOfMonth,
+      length: firstOfMonth === 0 ? 7 - 1 : firstOfMonth - 1,
     });
 
     setDaysArray([...prevDaysArray, ...daysArray]);
   }, [month, year]);
+
+  //
+  //
+
+  useEffect(() => {
+    document.addEventListener("mousedown", clickOutsideCalendar);
+
+    return () => {
+      document.removeEventListener("mousedown", clickOutsideCalendar);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  //////////const///////////////
 
   const getMonthName = (getMonth) => {
     let date = new Date();
@@ -33,6 +51,8 @@ export default function Calendar(props) {
   };
 
   const monthName = getMonthName(month);
+
+  /////////functions////////////////
 
   const prevMonth = () => {
     if (month === new Date().getMonth()) return;
@@ -58,13 +78,38 @@ export default function Calendar(props) {
       day: selectedDay,
       dayName: anotherDate.toLocaleString("en-US", { weekday: "long" }),
       monthName: anotherDate.toLocaleString("en-US", { month: "short" }),
+      string: `${anotherDate.getDate()}-${anotherDate.getMonth()}-${anotherDate.getFullYear()}`,
     };
     selectDate(otherDate);
+
+    setValue("date", otherDate, { shouldValidate: true });
+
+    setClosing(true);
+
+    setTimeout(() => {
+      setCalendarVisible(false);
+    }, 100);
   };
 
+  const clickOutsideCalendar = (event) => {
+    if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+      setCalendarVisible(false);
+    }
+  };
+
+  /////////////////////////
+
   return (
-    <div id="calendar" className="calendar-wrapper">
-      <div className="txt-sub-paragraph-b calendar-bar">
+    <div
+      data-testid="calendar"
+      ref={calendarRef}
+      id="calendar"
+      className={`calendar-wrapper ${closing ? "close" : ""}`}
+    >
+      <div
+        data-testid="calendar-page"
+        className="txt-sub-paragraph-b calendar-bar"
+      >
         <span
           onClick={prevMonth}
           className={
@@ -90,9 +135,10 @@ export default function Calendar(props) {
         <span>Su</span>
       </div>
       <div className="calendar">
-        {daysArray.map((e) => {
+        {daysArray.map((e, index) => {
           return (
             <label
+              key={e ? e : `empty-${index}`}
               className={`txt-sub-paragraph ${
                 e === day && month === new Date().getMonth() ? "today" : ""
               } ${
@@ -104,11 +150,15 @@ export default function Calendar(props) {
               }`}
             >
               <input
+                data-testid="calendar-input"
                 type="radio"
-                name="radio-calendar"
+                name="date"
                 value={e}
                 className={`txt-paragraph`}
-                disabled={e < day || e === finalDate.day}
+                disabled={
+                  (e < day && month === new Date().getMonth()) ||
+                  e === finalDate.day
+                }
                 onClick={() => selection(e)}
               />
               {e}

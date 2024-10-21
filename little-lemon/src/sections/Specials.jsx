@@ -1,4 +1,4 @@
-import Button from "../components/Button";
+import { Link } from "react-router-dom";
 import Card from "../components/Card";
 
 export default function Specials() {
@@ -31,13 +31,20 @@ export default function Specials() {
       <div className="section-body-col">
         <div className="section-inline">
           <h1 className="txt-title">This weeks Specials!</h1>
-          <Button btn="primary" text="Online Menu" />
+          <Link
+            to="/onlineMenu"
+            aria-label="navigate to menu"
+            className="link-button button-primary txt-lead-b"
+          >
+            Online Menu
+          </Link>
         </div>
 
         <div className="section-cards">
           {specials.map((obj) => {
             return (
               <Card
+                key={obj.title}
                 img={obj.img}
                 title={obj.title}
                 price={obj.price}

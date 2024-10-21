@@ -1,4 +1,11 @@
+import { useContext } from "react";
+import { ReservationContext } from "../components/ReservationProvider";
+
 export default function ReservationHero() {
+  const { formNr } = useContext(ReservationContext);
+
+  if (formNr > 1) return;
+
   return (
     <div className="section bg-green reservation">
       <img

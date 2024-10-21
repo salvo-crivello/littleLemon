@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Button from "./Button";
 import Calendar from "./Calendar";
 
 export default function SetDate(props) {
@@ -7,22 +6,75 @@ export default function SetDate(props) {
   const [inputSelected, setInputSelected] = useState(null);
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [otherDate, setOtherDate] = useState("Select another Date");
+  const [firstReload, setFirstReload] = useState(true);
 
-  const { updateForm, from } = props;
+  const {
+    // eslint-disable-next-line no-unused-vars
+    register,
+    setValue,
+    formState: { errors },
+    savedData,
+  } = props;
+
+  ///////////useEffect//////////////
 
   useEffect(() => {
-    const fullToday = `${today.dayName}, ${today.monthName} ${today.day}`;
-    const fullTomorrow = `${tomorrow.dayName}, ${tomorrow.monthName} ${tomorrow.day}`;
-    const fullSelectedDate = `${selectedDate.dayName}, ${selectedDate.monthName} ${selectedDate.day}`;
+    if (savedData === null) return;
+
+    const savedObj = JSON.stringify(Object.values(savedData.date));
+    const todayObj = JSON.stringify(Object.values(today));
+    const tomorrowObj = JSON.stringify(Object.values(tomorrow));
+    const fullOtherDate = `${savedData.date.dayName}, ${savedData.date.monthName} ${savedData.date.day}`;
+
+    const reloadData = (selection, value) => {
+      setInputSelected(selection);
+      setValue("date", value, { shouldValidate: true });
+    };
+
+    if (savedObj === todayObj) {
+      reloadData("today", today);
+    } else if (savedObj === tomorrowObj) {
+      reloadData("tomorrow", tomorrow);
+    } else {
+      reloadData("other", savedData.date);
+    }
 
     setOtherDate(
-      calendarVisible && Object.keys(selectedDate).length !== 0
-        ? fullSelectedDate
-        : "Select another Date"
+      savedObj !== todayObj && savedObj !== tomorrowObj
+        ? fullOtherDate
+        : "Select another date"
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    updateForm(selectedDate, from);
+  //
+  //
+
+  useEffect(() => {
+    if (savedData !== null) {
+      if (firstReload) {
+        console.log("1 blocco");
+        setFirstReload(!firstReload);
+        return;
+      }
+    }
+
+    const fullSelectedDate = `${selectedDate.dayName}, ${selectedDate.monthName} ${selectedDate.day}`;
+
+    let otherDateField;
+
+    if (calendarVisible && Object.keys(selectedDate).length !== 0) {
+      otherDateField = fullSelectedDate;
+    } else {
+      otherDateField = "Select another date";
+    }
+
+    setOtherDate(otherDateField);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedDate]);
+
+  //////////const/////////////////////////
 
   const todayDate = new Date();
   const tomorrowDate = new Date(todayDate);
@@ -34,6 +86,7 @@ export default function SetDate(props) {
     day: new Date().getDate(),
     dayName: new Date().toLocaleString("en-US", { weekday: "long" }),
     monthName: new Date().toLocaleString("en-US", { month: "short" }),
+    string: `${new Date().getDate()}-${new Date().getMonth()}-${new Date().getFullYear()}`,
   };
 
   const tomorrow = {
@@ -42,15 +95,23 @@ export default function SetDate(props) {
     day: tomorrowDate.getDate(),
     dayName: tomorrowDate.toLocaleString("en-US", { weekday: "long" }),
     monthName: tomorrowDate.toLocaleString("en-US", { month: "short" }),
+    string: `${tomorrowDate.getDate()}-${tomorrowDate.getMonth()}-${tomorrowDate.getFullYear()}`,
   };
 
   const todayString = `Today - ${today.dayName}, ${today.monthName} ${today.day}`;
   const tomorrowString = `Tomorrow - ${tomorrow.dayName}, ${tomorrow.monthName} ${tomorrow.day}`;
 
-  ///////////////////////////////
+  ///////functions/////////////
 
   const selectDate = (dateObj) => {
     setSelectedDate(dateObj);
+  };
+
+  const handleOnClick = (e, value) => {
+    selectDate(value);
+    setCalendarVisible(false);
+    setInputSelected(e.target.id);
+    setValue("date", value, { shouldValidate: true });
   };
 
   return (
@@ -64,14 +125,8 @@ export default function SetDate(props) {
         >
           <input
             id="today"
-            name="radio-date"
-            value="today"
             type="radio"
-            onClick={(e) => {
-              selectDate(today);
-              setCalendarVisible(false);
-              setInputSelected(e.target.id);
-            }}
+            onClick={(e) => handleOnClick(e, today)}
           />
           {todayString}
         </label>
@@ -81,14 +136,8 @@ export default function SetDate(props) {
         >
           <input
             id="tomorrow"
-            name="radio-date"
-            value="tomorrow"
             type="radio"
-            onClick={(e) => {
-              selectDate(tomorrow);
-              setCalendarVisible(false);
-              setInputSelected(e.target.id);
-            }}
+            onClick={(e) => handleOnClick(e, tomorrow)}
           />
           {tomorrowString}
         </label>
@@ -97,9 +146,8 @@ export default function SetDate(props) {
           className={inputSelected === "other" ? "input-selected" : ""}
         >
           <input
+            data-testid="other"
             id="other"
-            name="radio-date"
-            value="other"
             type="radio"
             onClick={(e) => {
               setCalendarVisible(true);
@@ -110,9 +158,15 @@ export default function SetDate(props) {
           {otherDate}
         </label>
         {calendarVisible && (
-          <Calendar selectDate={selectDate} finalDate={selectedDate} />
+          <Calendar
+            selectDate={selectDate}
+            finalDate={selectedDate}
+            setCalendarVisible={setCalendarVisible}
+            {...props}
+          />
         )}
       </div>
+      {errors?.date && <p className="errorMsg">{errors.date.message}</p>}
     </fieldset>
   );
 }
