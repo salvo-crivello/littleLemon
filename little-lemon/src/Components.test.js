@@ -217,7 +217,7 @@ describe("Calendar Component", () => {
         setValue={mockSetValue}
       />
     );
-    const dayToSelect = 15; // Scegli un giorno del mese attuale
+    const dayToSelect = 25; //choose a day
     const dayElement = screen.getByLabelText(dayToSelect.toString());
 
     fireEvent.click(dayElement);

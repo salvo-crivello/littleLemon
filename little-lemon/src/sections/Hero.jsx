@@ -9,10 +9,7 @@ export default function Hero() {
             <h1 className="txt-title clr-yellow">Little Lemon</h1>
             <h2 className="txt-subtitle clr-white">Chicago</h2>
           </div>
-          <p className="txt-lead clr-white">
-            Lorem ipsum dolor sit amet consectetur. Euismod orci sed nibh
-            venenatis cras in posuere amet. Faucibus ridiculus aliquam.
-          </p>
+          <p className="txt-lead clr-white">ciao</p>
           <Link
             to="/reservation"
             aria-label="navigate to reservation"
