@@ -8,21 +8,21 @@ export default function Specials() {
       title: "Greek salad",
       price: "$ 10.99",
       description:
-        "Lorem ipsum dolor sit amet consectetur. Euismod orci sed nibh venenatis cras in posuere amet. Faucibus ridiculus aliquam.",
+        "A refreshing mix of crisp cucumbers, juicy tomatoes, red onions, Kalamata olives, and tangy feta cheese, drizzled with olive oil and a sprinkle of oregano.",
     },
     {
       img: "/photo/photo-10.png",
       title: "Matriciana",
       price: "$ 9.99",
       description:
-        "Lorem ipsum dolor sit amet consectetur. Euismod orci sed nibh venenatis cras in posuere amet. Faucibus ridiculus aliquam.",
+        "A classic Italian pasta dish made with creamy egg yolk, crispy pancetta, and Parmesan cheese, all tossed with perfectly cooked spaghetti.",
     },
     {
       img: "/photo/photo-08.png",
       title: "Fish grilled",
       price: "$ 14.99",
       description:
-        "Lorem ipsum dolor sit amet consectetur. Euismod orci sed nibh venenatis cras in posuere amet. Faucibus ridiculus aliquam.",
+        "Freshly caught and expertly grilled, our fish is seasoned with herbs and served with a side of lemon for a light, flavorful meal.",
     },
   ];
 

@@ -8,12 +8,14 @@ export default function About() {
             <h2 className="txt-subtitle">Chicago</h2>
           </div>
           <p className="txt-paragraph">
-            Lorem ipsum dolor sit amet consectetur. Euismod orci sed nibh
-            venenatis cras in posuere amet. Faucibus ridiculus aliquam. Lorem
-            ipsum dolor sit amet consectetur. Euismod orci sed nibh venenatis
-            cras in posuere amet. Faucibus ridiculus aliquam. Lorem ipsum dolor
-            sit amet consectetur. Euismod orci sed nibh venenatis cras in
-            posuere amet. Faucibus ridiculus aliquam.
+            Welcome to Little Lemon, where passion for food and love for
+            tradition come together. Nestled in the heart of Chicago, we take
+            pride in serving dishes that celebrate fresh, local ingredients and
+            timeless recipes. Our team, led by talented chefs, combines culinary
+            creativity with authentic flavors to deliver an exceptional dining
+            experience. Whether you’re here for a casual meal or a special
+            occasion, we invite you to relax, indulge, and enjoy every moment
+            with us.
           </p>
         </div>
         <div className="section-free">

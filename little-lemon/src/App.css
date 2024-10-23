@@ -1109,6 +1109,7 @@ li .page-selected:after {
 
 .card {
   flex-grow: 1;
+  width: 100%;
   max-width: 300px;
   display: flex;
   flex-direction: column;

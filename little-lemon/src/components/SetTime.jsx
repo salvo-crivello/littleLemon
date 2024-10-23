@@ -37,18 +37,13 @@ export default function SetTime(props) {
   //_____________________________________________use effect for updating times slots
 
   useEffect(() => {
-    console.log("USE EFFECT PRIMA DEL RETURN", dateSelected); //chatgpt questo ritorna null sulla console
-    console.log("------", watch("date"));
-
     if (dateSelected === null) return;
 
     const dateSelectedString = `${dateSelected?.day}-${dateSelected?.month}-${dateSelected?.year}`;
 
-    console.log("USE EFFECT  DOPO RETURN", dateSelectedString); //chatgpt questo non avviene
     // fetch simulation to MirageJS backend
 
     async function fetchData() {
-      //chatgpt questo non avvinene
       fetch(`littlelemon-api/reservations/${dateSelectedString}`)
         .then((response) => response.json())
         .then((data) => {

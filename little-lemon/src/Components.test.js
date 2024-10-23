@@ -1,18 +1,9 @@
-import {
-  cleanup,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 import Counter from "./components/Counter";
 import Button from "./components/Button";
 import Calendar from "./components/Calendar";
 import BookingForm from "./forms/BookingForm";
-import SetTime from "./components/SetTime";
-import SetDate from "./components/SetDate";
-import { useForm } from "react-hook-form";
 
 jest.mock("miragejs", () => ({
   createServer: () => ({}),
@@ -217,7 +208,7 @@ describe("Calendar Component", () => {
         setValue={mockSetValue}
       />
     );
-    const dayToSelect = 25; //choose a day
+    const dayToSelect = 29; //choose a day
     const dayElement = screen.getByLabelText(dayToSelect.toString());
 
     fireEvent.click(dayElement);
@@ -227,8 +218,8 @@ describe("Calendar Component", () => {
         day: dayToSelect,
         month: new Date().getMonth(),
         year: new Date().getFullYear(),
-        dayName: expect.any(String), // dayName string?
-        monthName: expect.any(String), // monthName string?
+        dayName: expect.any(String),
+        monthName: expect.any(String),
       })
     );
   });
@@ -274,32 +265,6 @@ describe('"testing <SetTime/>"', () => {
   beforeEach(() => {
     jest.spyOn(console, "log");
   });
-
-  // const savedData = null;
-
-  // const propsUseForm = {
-  //   register: jest.fn(),
-  //   errors: {},
-  //   watch: jest.fn((field) => {
-  //     if (field === "date") return null;
-  //     return undefined;
-  //   }),
-  //   setValue: jest.fn(),
-  // };
-
-  // const propsUseForm = {
-  //   register: jest.fn(),
-  //   errors: {},
-  //   watch: jest.fn(() => "ciccio"),
-  //   setValue: jest.fn(),
-  // };
-
-  // afterEach(() => {
-  //   cleanup();
-  //   jest.clearAllMocks(); // clean mocks
-  // });
-
-  //
 
   test("first mount no fetch", async () => {
     render(
@@ -353,31 +318,4 @@ describe('"testing <SetTime/>"', () => {
 
     expect(global.fetch).toBeCalledTimes(calendarRadioActive.length + 2);
   });
-
-  //
-
-  // test("fetch call", async () => {
-  //   render(
-  //     <SetTime
-  //       title="2. SELECT TIME"
-  //       description="Select the perfect hour for your reservation."
-  //       {...propsUseForm2}
-  //       savedData={savedData}
-  //     />
-  //   );
-
-  //   // await waitFor(() => {
-  //   //   expect(console.log).toHaveBeenCalledWith("27-9-2024");
-  //   // });
-
-  //   // Usa `waitFor` per attendere che la fetch venga chiamata.
-  //   await waitFor(() => {
-  //     expect(global.fetch).toHaveBeenCalled(); // Assicurati che la fetch sia stata chiamata almeno una volta
-  //   });
-
-  //   // Verifica che la chiamata a fetch sia con il giusto URL
-  //   expect(global.fetch).toHaveBeenCalledWith(
-  //     `/littlelemon-api/reservations/27-9-2024`
-  //   );
-  // });
 });
