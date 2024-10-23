@@ -28,7 +28,7 @@ export default function Footer() {
             <h4>Contacts</h4>
             <ul>
               <li>Chicago, 4th avenue str.</li>
-              <li>+555 41 32 167</li>
+              <li>+555 41 32 165</li>
               <li>littlelemon@pec.com</li>
             </ul>
           </div>
