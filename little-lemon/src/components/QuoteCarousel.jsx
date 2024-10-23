@@ -5,34 +5,30 @@ const quotesGroup = [
   {
     id: 1,
     img: "/photo/photo-user.png",
-    testimonial: "Francesca C.",
+    testimonial: "Emma Johnson",
     vote: "⭑⭑⭑⭑",
-    quote: `"1Lorem ipsum dolor sit amet consectetur. Euismod orci sed nibh
-          venenatis cras in posuere amet."`,
+    quote: `"Amazing food and cozy atmosphere! The chef's special was creative and delicious. Perfect for a romantic evening or night out. Highly recommend!"`,
   },
   {
     id: 2,
     img: "/photo/photo-user.png",
-    testimonial: "Francesca C.",
+    testimonial: "Francesca Camilleri",
     vote: "⭑⭑⭑⭑⭑",
-    quote: `"2Lorem ipsum dolor sit amet consectetur. Euismod orci sed nibh
-              venenatis cras in posuere amet."`,
+    quote: `"Loved the variety on the menu and fast service. The seafood pasta was fantastic, but it was a bit noisy. Still, a great lunch spot!"`,
   },
   {
     id: 3,
     img: "/photo/photo-user.png",
-    testimonial: "Francesca C.",
+    testimonial: "Sarah Lee",
     vote: "⭑⭑⭑⭑",
-    quote: `"3Lorem ipsum dolor sit amet consectetur. Euismod orci sed nibh
-                  venenatis cras in posuere amet."`,
+    quote: `"Incredible flavors and excellent service! The small plates were perfect for sharing, and the wine list is top-notch. Can’t wait to come back!"`,
   },
   {
     id: 4,
     img: "/photo/photo-user.png",
-    testimonial: "Francesca C.",
+    testimonial: "Michael Thompson",
     vote: "⭑⭑⭑⭑⭑",
-    quote: `"4Lorem ipsum dolor sit amet consectetur. Euismod orci sed nibh
-                  venenatis cras in posuere amet."`,
+    quote: `"The steak was great, but service was slow. Nice ambiance, though. I’d come back hoping for faster service next time."`,
   },
 ];
 
